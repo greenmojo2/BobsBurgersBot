@@ -6,7 +6,7 @@ import random
 import json
 import tempfile
 # local imports
-import GenAIParameters.py as genai
+import GenAIParameters as genai
 
 # Write the credentials to a temporary file
 with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp:
