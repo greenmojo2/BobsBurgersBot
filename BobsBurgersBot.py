@@ -7,6 +7,7 @@ import json
 import tempfile
 # local imports
 import GenAIParameters as genai
+import VersionInformation as vi
 
 # Write the credentials to a temporary file
 with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp:
@@ -36,6 +37,10 @@ defaults = genai.defaults
 context = genai.context
 examples = genai.examples
 
+if "debug" not in st.session_state:
+    st.session_state.debug = 0
+debug = st.session_state.debug
+
 # Streamlit setup
 st.title("Bob's Burgers Chatbot")
 st.write("Chat History:")
@@ -55,7 +60,20 @@ if user_input := st.chat_input("You:"):
 # if st.button("Send"):
     user_message = user_input.strip()
 
-    if user_message:
+    if user_message == "debug":
+        #flip the value of debug between 0 and 1
+        if debug == 0:
+            debug = 1
+        else:
+            debug = 0
+        print("Debug: ", debug)
+        st.write("Debug: ", debug)
+        st.session_state.debug = debug
+    elif user_message == "version":
+        st.write("Version: ", vi.version)
+        st.write("Date: ", vi.date)
+        st.write("Changelog: ", vi.changelog)
+    elif user_message:
         st.session_state.conversation.append({"role": "user", "content": user_message})
         with st.chat_message("user"):
             st.markdown(user_message)
@@ -84,12 +102,25 @@ if user_input := st.chat_input("You:"):
                             
                 # Send the conversation to Generative AI
                 conversation_text = [message["content"] for message in st.session_state.conversation]
+                if debug == 1:
+                    st.write("Conversation Text: ", conversation_text)
                 assistant_response = palm.chat(
-                    context=context,
-                    examples=examples,
+                    context=genai.context,
+                    examples=genai.examples,
                     messages=conversation_text,
-                    **defaults  # Include Generative AI defaults
+                    **genai.defaults  # Include Generative AI defaults
+                    # **defaults  # Include Generative AI defaults
                 ).last
+                if debug == 1:
+                    full_response = palm.chat(
+                    context=genai.context,
+                    examples=genai.examples,
+                    messages=conversation_text,
+                    **genai.defaults  # Include Generative AI defaults
+                    # **defaults  # Include Generative AI defaults
+                )
+                    st.write("Full assistant response: ", full_response )
+                
         # Check and make sure the response is not empty
         if not assistant_response:
             assistant_response = "Yeah, I'm not even going to try to respond to that."
