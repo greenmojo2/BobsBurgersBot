@@ -12,9 +12,15 @@
     - [ ] "Something something celebration"
 - [ ] simulate bot "typing" by outputting a couple characters every few milliseconds instead of whole message at once
 - [ ] better icons for identifying who the message is front. maybe just the bunny ears for Louise? 
-- [ ] possibly seperate out context and examples for PaLM to another file for easier tweaking
-- [ ] add more examples to PaLM
+- [X] possibly seperate out context and examples for PaLM to another file for easier tweaking
+- [X] add more examples to PaLM
 - [ ] figure out commands to actually tune model instead of only steering the base model's response
 - [ ] unclusterfuck my google cloud console
+    - [ ] app engine
+    - [X] cloud functions
+    - [ ] TTS & STT
+    - [ ] cloud storage
+    - [ ] analytics
+    - [ ] cloud build?
 - [ ] find tool to make writing markdown less of a PITA
 - [ ] resist urge to add speech-to-text 

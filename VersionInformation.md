@@ -1,21 +1,27 @@
-# v4 - 11/2/23 10:11 PM
+### **v4** - 11/3/23 4:39 PM
 
-## Entirely redone prompting for GenAI.
-* Repeated instructions to favor short replies (which seems to keep it more on track)
-* Context now consists of these seperately defined parameters:
-    - Personality
-    - Background
-    - Knowledgebase
-- Added FormatPrompt(message) function
-    - User input now inserted into instructive wrapper. 
-    - Instructions specify usage of assembled context
-## Misc
-- Replaced "Louse is busy with customers..." message with a randomly picked away message from a list
-- Chat history: header no longer appears if history is empty
-- All new parameters are specified in v2_GenAIParameters_v2.py
-- Started work on new avatars in away messages
+#### **Entirely redone prompting for GenAI.**  
 
+Context is now assembled from a personality description, a background, and a knowledgebase. All three are embedded within a wrapper instruction to play a character using those three "parts".  
 
-version = 'v3'
-date = '11/1/2023 2:36 PM\n'
-changelog = '2 to v3\n\n----------\n\nOverall\n\n- add listener for keyword debug\n\n- add listener for keyword version\n\n- add version file for keep track of updates\n\n- update generative AI parameters\n\n----------\n\nGenAI Parameters\n\n- temperature .9 to .8\n\n- top_k 40 to 60\n\n- add two more examples'
+User message sent to GenAI is now wrapped around by instructions as well. New function FormatPrompt(msg) will take passed string and include it within instructions specifying that the answer must come from the assembled entity specified in the context.
+
+#### **Better placeholder message while GenAI is busy.**
+
+Instead of the loading message always saying "Louise is busy with customers...", there is now a list of prewritten "away" messages that sound like something Louise might say. A random one is picked to display while the GenAI is busy
+
+#### **Bot responses simulate being typed**
+
+Replies from the bot will now print characters seperately and wait a configurable number of milliseconds before continuing to the next character. Gives the appearance of being typed instead of poofing into existence all at once
+
+#### **Misc (or minor) upgrades**
+"Chat History:" will no longer appear at the top of the page if no messages have been exchanged yet.
+
+Add notes about upgraded generative AI prompting in seperate markdown file.
+
+GenAI parameters and away messages are specified in v2_GenAIParameters_v2.py
+
+VersionInformation.py renamed to VersionInformation.py.old and contains v3 info. v4 and newer in (this) Markdown file and display when typing "version" into chatbot
+
+#### **Work in Progress**
+Changing Louse's avatar icon from the bot to her bunny ears.  

@@ -5,18 +5,27 @@ import google.generativeai as palm
 import random
 import json
 import tempfile
+import time
 # local imports
 import GenAIParameters as genai
-import VersionInformation as vi
 import v2_GenAIParameters_v2 as genai_v2
 
 def version_info():
-    st.write("Version: ", vi.version)
-    st.write("Date: ", vi.date)
-    st.write("Changelog: ", vi.changelog)
+    # write the markdown file VersionInformation.md to st.write()
+    with open("VersionInformation.md", "r") as f:
+        # st.write(f.read())
+        st.markdown(f.read())
 
 def format_prompt(message):
     return (f"Please answer within 250 characters. {message}. The response must be based on the personality, backstory, and knowledge base that you have. The answer must be concise and short.")
+
+def typewriter(text: str, speed: int):
+    tokens = text.split()
+    container = st.empty()
+    for index in range(len(tokens) + 1):
+        curr_full_text = " ".join(tokens[:index])
+        container.markdown(curr_full_text)
+        time.sleep(1 / speed)
 
 # Write the credentials to a temporary file
 with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp:
@@ -137,4 +146,8 @@ if user_input := st.chat_input("Enter your message:"):
 
         st.session_state.conversation.append({"role": "assistant", "content": assistant_response, "avatar": "louse1.jpg"})
         with st.chat_message("assistant"):
-            st.markdown(assistant_response)
+            # st.markdown(assistant_response)
+            typewriter(text=assistant_response, speed=9)
+            #Sample Example
+# text = "This is an example of streamlit text with typewriter effect :)"
+# typewriter(text=text, speed=speed)
