@@ -1,10 +1,7 @@
-### **v5** - 11/6/2023 1:09 AM
+### **v4.1** - 11/6/2023 1:24 AM
 
-Can't get chat avatars to work. Stashing files in "images" folder for safekeeping. 
-
-Also removed references to obsolete files and created an "obsolete" folder for them.
-
-Added version information expander to top of screen.
+- Add "images" folder for potential avatars. Add "obsolete" folder for antiquated code. 
+- Added version information expander to top of screen.
 
 ### **v4** - 11/3/23 4:39 PM
 
