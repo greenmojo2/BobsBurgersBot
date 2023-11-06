@@ -7,13 +7,12 @@ import json
 import tempfile
 import time
 # local imports
-import GenAIParameters as genai
+# import GenAIParameters as genai
 import v2_GenAIParameters_v2 as genai_v2
 
 def version_info():
     # write the markdown file VersionInformation.md to st.write()
     with open("VersionInformation.md", "r") as f:
-        # st.write(f.read())
         st.markdown(f.read())
 
 def format_prompt(message):
@@ -58,6 +57,9 @@ debug = st.session_state.debug
 # Streamlit setup
 st.title("Bob's Burgers Chatbot")
 
+with st.expander("Version Information"):
+    version_info()
+
 # conversation = []  # Store the entire conversation
 if "conversation" not in st.session_state:
     st.session_state.conversation = []
@@ -88,6 +90,11 @@ if user_input := st.chat_input("Enter your message:"):
 
     elif user_message == "version":
         version_info()
+
+    # elif user_message == "image":
+    #     st.image("louse1.svg", caption="Louise", use_column_width=True)
+    #     st.image("louse2.svg", caption="Louise", use_column_width=True)
+    #     st.image("louise3.svg", caption="Louise", use_column_width=True)
 
     elif user_message:
         st.session_state.conversation.append({"role": "user", "content": user_message})
@@ -135,7 +142,7 @@ if user_input := st.chat_input("Enter your message:"):
                     context=genai_v2.overall_context,
                     examples=genai_v2.examples,
                     messages=conversation_text,
-                    **genai.defaults  # Include Generative AI defaults
+                    **genai_v2.defaults  # Include Generative AI defaults
                 )
                 if debug == 1:
                     st.write("Full assistant response: ", full_response )
@@ -144,7 +151,7 @@ if user_input := st.chat_input("Enter your message:"):
         if not assistant_response:
             assistant_response = "Yeah, I'm not even going to try to respond to that."
 
-        st.session_state.conversation.append({"role": "assistant", "content": assistant_response, "avatar": "louse1.jpg"})
+        st.session_state.conversation.append({"role": "assistant", "content": assistant_response})
         with st.chat_message("assistant"):
             # st.markdown(assistant_response)
             typewriter(text=assistant_response, speed=9)

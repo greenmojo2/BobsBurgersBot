@@ -1,3 +1,11 @@
+### **v5** - 11/6/2023 1:09 AM
+
+Can't get chat avatars to work. Stashing files in "images" folder for safekeeping. 
+
+Also removed references to obsolete files and created an "obsolete" folder for them.
+
+Added version information expander to top of screen.
+
 ### **v4** - 11/3/23 4:39 PM
 
 #### **Entirely redone prompting for GenAI.**  
