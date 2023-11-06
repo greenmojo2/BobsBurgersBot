@@ -2,3 +2,4 @@
 .json
 .secrets/
 .streamlit/
+__pycache__/
