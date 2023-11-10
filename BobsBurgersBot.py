@@ -6,6 +6,8 @@ import random
 import json
 import tempfile
 import time
+from streamlit_extras.let_it_rain import rain 
+
 # local imports
 # import GenAIParameters as genai
 import v2_GenAIParameters_v2 as genai_v2
@@ -25,6 +27,14 @@ def typewriter(text: str, speed: int):
         curr_full_text = " ".join(tokens[:index])
         container.markdown(curr_full_text)
         time.sleep(1 / speed)
+
+def burger_rain():
+    rain(
+        emoji="🍔",
+        font_size=54,
+        falling_speed=5,
+        animation_length=5,
+    )
 
 # Write the credentials to a temporary file
 with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp:
@@ -76,7 +86,9 @@ if user_input := st.chat_input("Enter your message:"):
 
 # if st.button("Send"):
     user_message = user_input.strip()
-
+    # if user message contains the word burger, then rain burgers
+    if "burger" in user_message.lower():
+        burger_rain()
     if user_message == "debug":
         #flip the value of debug between 0 and 1
         if debug == 0:
@@ -119,6 +131,8 @@ if user_input := st.chat_input("Enter your message:"):
             # extra easter eggs
             if response.query_result.intent.display_name == "nick.eastereggs.snow":
                 st.snow()
+            if response.query_result.intent.display_name == "nick.eastereggs.balloons":
+                st.balloons()
         else:
             # with st.spinner("Louise is busy with customers. Please wait..."):
 
