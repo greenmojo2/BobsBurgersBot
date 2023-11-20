@@ -1,3 +1,6 @@
+### **v4.2** - 11/20/2023 4:16 PM
+- add dialogflow response to debug output 
+
 ### **v4.1** - 11/6/2023 1:24 AM
 
 - Add "images" folder for potential avatars. Add "obsolete" folder for antiquated code. 
