@@ -114,6 +114,8 @@ if user_input := st.chat_input("Enter your message:"):
         )
         response = client.detect_intent(request)
 
+        if debug == 1:
+            st.write("Dialogflow response:", response)
         if response.query_result.intent.display_name != "Default Fallback Intent":
             assistant_response = response.query_result.fulfillment_text
             # extra easter eggs
