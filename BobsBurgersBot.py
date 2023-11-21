@@ -89,6 +89,9 @@ if user_input := st.chat_input("Enter your message:"):
     # if user message contains the word burger, then rain burgers
     if "burger" in user_message.lower():
         burger_rain()
+    # if user message contains birthday, celebrate, or balloon, then rain balloons
+    if "birthday" in user_message.lower() or "celebrate" in user_message.lower() or "balloon" in user_message.lower():
+        st.balloons()
     if user_message == "debug":
         #flip the value of debug between 0 and 1
         if debug == 0:
@@ -133,8 +136,8 @@ if user_input := st.chat_input("Enter your message:"):
             # extra easter eggs
             if response.query_result.intent.display_name == "nick.eastereggs.snow":
                 st.snow()
-            if response.query_result.intent.display_name == "nick.eastereggs.balloons":
-                st.balloons()
+            # if response.query_result.intent.display_name == "nick.eastereggs.balloons":
+            #     st.balloons()
         else:
             # with st.spinner("Louise is busy with customers. Please wait..."):
 

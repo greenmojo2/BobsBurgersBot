@@ -1,3 +1,6 @@
+### **v4.3.2** - 11/21/2023 1:29 PM 
+- tweak: balloons triggered by keyword instead of intent
+
 ### **v4.3.1** - 11/21/2023 1:29 PM 
 - bugfix: add streamlit-extras to requirements.txt
 
