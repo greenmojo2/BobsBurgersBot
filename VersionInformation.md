@@ -1,3 +1,6 @@
+### **v4.3.1** - 11/21/2023 1:29 PM 
+- bugfix: add streamlit-extras to requirements.txt
+
 ### **v4.3** - 11/20/2023 6:22 PM
 - add balloons and burgerrain eastereggs
 
