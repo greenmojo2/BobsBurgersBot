@@ -167,12 +167,6 @@ if user_input := st.chat_input("Enter your message:"):
                     st.write("Full assistant response: ", full_response )
                 assistant_response = full_response.last  
                 
-                # If the generative AI response starts with "Louise: " or "Louise Belcher:", remove it
-                if assistant_response.startswith("Louise: "):
-                    assistant_response = assistant_response[8:]
-                elif assistant_response.startswith("Louise Belcher: "):
-                    assistant_response = assistant_response[16:]
-                
         # Check and make sure the response is not empty
         if not assistant_response:
             assistant_response = "Yeah, I'm not even going to try to respond to that."
